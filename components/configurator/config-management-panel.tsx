@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ConfigCard } from "./config-card"
 import { Database, Save, Upload, Download, Trash2, Copy, CheckCircle2 } from "lucide-react"
-import { useConfig } from "@/lib/config-context"
+import { useConfig, type HexapodConfig } from "@/lib/config-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -78,10 +78,10 @@ export function ConfigManagementPanel() {
       const reader = new FileReader()
       reader.onload = (event) => {
         try {
-          const importedConfig = JSON.parse(event.target?.result as string)
+          const importedConfig = JSON.parse(event.target?.result as string) as HexapodConfig
           loadConfig(importedConfig)
           alert("Configuration imported successfully!")
-        } catch (error) {
+        } catch {
           alert("Error importing configuration file")
         }
       }

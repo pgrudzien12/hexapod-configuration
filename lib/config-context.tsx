@@ -202,11 +202,13 @@ const defaultConfig: HexapodConfig = {
 
 interface ConfigContextType {
   config: HexapodConfig
-  updateConfig: (path: string, value: any) => void
+  updateConfig: (path: string, value: unknown) => void
   resetConfig: () => void
   saveConfig: () => void
   loadConfig: (config: HexapodConfig) => void
 }
+
+type ConfigNode = Record<string, unknown>
 
 const ConfigContext = createContext<ConfigContextType | null>(null)
 
@@ -221,14 +223,14 @@ export function useConfig() {
 export function ConfigProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<HexapodConfig>(defaultConfig)
 
-  const updateConfig = useCallback((path: string, value: any) => {
+  const updateConfig = useCallback((path: string, value: unknown) => {
     setConfig((prev) => {
-      const newConfig = { ...prev }
+      const newConfig = structuredClone(prev)
       const keys = path.split(".")
-      let current: any = newConfig
+      let current = newConfig as unknown as ConfigNode
 
       for (let i = 0; i < keys.length - 1; i++) {
-        current = current[keys[i]]
+        current = current[keys[i]] as ConfigNode
       }
 
       current[keys[keys.length - 1]] = value

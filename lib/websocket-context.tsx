@@ -5,10 +5,15 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 
 export type ConnectionStatus = "disconnected" | "connecting" | "connected" | "error"
 
+type WebSocketMessage = {
+  type: string
+  data: unknown
+}
+
 interface WebSocketContextType {
   status: ConnectionStatus
-  lastMessage: any
-  sendMessage: (message: any) => void
+  lastMessage: WebSocketMessage | null
+  sendMessage: (message: unknown) => void
   connect: () => void
   disconnect: () => void
 }
@@ -25,8 +30,7 @@ export function useWebSocket() {
 
 export function WebSocketProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<ConnectionStatus>("disconnected")
-  const [lastMessage, setLastMessage] = useState<any>(null)
-  const [ws, setWs] = useState<WebSocket | null>(null)
+  const [lastMessage, setLastMessage] = useState<WebSocketMessage | null>(null)
 
   const connect = useCallback(() => {
     // Simulated WebSocket connection for demo purposes
@@ -41,15 +45,12 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const disconnect = useCallback(() => {
-    if (ws) {
-      ws.close()
-    }
     setStatus("disconnected")
     console.log("[v0] WebSocket disconnected")
-  }, [ws])
+  }, [])
 
   const sendMessage = useCallback(
-    (message: any) => {
+    (message: unknown) => {
       if (status === "connected") {
         console.log("[v0] Sending message:", message)
         // Simulate response
@@ -67,7 +68,7 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
     // Auto-connect on mount for demo
     connect()
     return () => disconnect()
-  }, [])
+  }, [connect, disconnect])
 
   return (
     <WebSocketContext.Provider value={{ status, lastMessage, sendMessage, connect, disconnect }}>

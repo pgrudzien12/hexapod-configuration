@@ -144,7 +144,7 @@ export function SensorsPanel() {
               <div className="flex items-center justify-center size-6 rounded-full bg-primary/10 text-primary font-bold text-xs shrink-0">
                 3
               </div>
-              <p className="text-muted-foreground">Click "Start Calibration" and wait for completion</p>
+              <p className="text-muted-foreground">Click &quot;Start Calibration&quot; and wait for completion</p>
             </div>
           </div>
         </ConfigCard>

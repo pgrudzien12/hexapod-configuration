@@ -10,7 +10,6 @@ interface ServoConfig {
 }
 
 interface LegVisualizationProps {
-  legId: string
   legName: string
   servos: {
     coxa: ServoConfig
@@ -20,7 +19,7 @@ interface LegVisualizationProps {
   testingServo: string | null
 }
 
-export function LegVisualization({ legId, legName, servos, testingServo }: LegVisualizationProps) {
+export function LegVisualization({ legName, servos, testingServo }: LegVisualizationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {

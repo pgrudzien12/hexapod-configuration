@@ -49,7 +49,7 @@ const CHANNEL_MAPPINGS = [
 export function ControllerSettingsPanel() {
   const { config, updateConfig } = useConfig()
   const controller = config.controller
-  const [channelValues, setChannelValues] = useState<Record<number, number>>(
+  const [channelValues] = useState<Record<number, number>>(
     CHANNEL_MAPPINGS.reduce((acc, ch) => ({ ...acc, [ch.id]: ch.defaultValue }), {}),
   )
 

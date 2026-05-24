@@ -362,7 +362,6 @@ export function LegConfigurationPanel() {
       <div className="space-y-6">
         <ConfigCard title="Leg Preview" description="Real-time visualization">
           <LegVisualization
-            legId={selectedLeg}
             legName={LEG_NAMES[legIndex]}
             servos={legConfig.servos}
             testingServo={testingServo}

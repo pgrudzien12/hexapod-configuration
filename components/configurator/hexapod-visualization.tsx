@@ -59,7 +59,7 @@ export function HexapodVisualization() {
     const legAngles = [30, 90, 150, 210, 270, 330]
     const legLength = 60
 
-    legAngles.forEach((angle, i) => {
+    legAngles.forEach((angle) => {
       const rad = (angle * Math.PI) / 180
       const startX = Math.cos(rad) * bodyRadius * 0.8
       const startY = Math.sin(rad) * bodyRadius * 0.6 * 0.8
