@@ -36,5 +36,8 @@
 ## Validation
 
 - Use `pnpm lint` for code-quality validation.
+- Vitest is the standard test runner for this repository.
+- For logic changes in `lib/`, `hooks/`, `data/`, or reusable components, add/update tests and run `pnpm test`.
+- Prefer focused behavior tests over snapshot-only tests.
 - Use `pnpm build` for broader integration validation when a change touches app structure, shared providers, or route behavior.
-- There is no dedicated test suite yet, so prefer the narrowest available validation and mention gaps when relevant.
+- Test coverage is still evolving, so if a touched area has no tests yet, use the narrowest available validation and mention the gap.

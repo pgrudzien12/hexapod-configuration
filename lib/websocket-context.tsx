@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useEffect, useState, useCallback } from "react"
+import { createContext, useContext, useState, useCallback } from "react"
 
 export type ConnectionStatus = "disconnected" | "connecting" | "connected" | "error"
 
@@ -63,12 +63,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
     },
     [status],
   )
-
-  useEffect(() => {
-    // Auto-connect on mount for demo
-    connect()
-    return () => disconnect()
-  }, [connect, disconnect])
 
   return (
     <WebSocketContext.Provider value={{ status, lastMessage, sendMessage, connect, disconnect }}>

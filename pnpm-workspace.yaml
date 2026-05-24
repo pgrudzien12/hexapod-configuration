@@ -1,4 +1,10 @@
 allowBuilds:
   '@tailwindcss/oxide': true
   node: true
+  sharp: true
   unrs-resolver: true
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - node
+  - sharp
+  - unrs-resolver
