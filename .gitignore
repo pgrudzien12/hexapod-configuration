@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+node_modules.scaffold/
+node_modules.scaffold/**/*
 
 # next.js
 /.next/
@@ -25,3 +27,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# from next
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+# testing
+/coverage
+# misc
+.DS_Store
+*.pem
+# env files (can opt-in for committing if needed)
